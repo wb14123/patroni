@@ -8,8 +8,11 @@ if [[ $UID -ge 10000 ]]; then
 fi
 
 cat > /home/postgres/patroni.yml <<__EOF__
+
 bootstrap:
   dcs:
+    synchronous_mode: true
+    synchronous_mode_strict: true
     postgresql:
       use_pg_rewind: true
       pg_hba:
@@ -25,6 +28,9 @@ bootstrap:
 restapi:
   connect_address: '${PATRONI_KUBERNETES_POD_IP}:8008'
 postgresql:
+  parameters:
+    synchronous_commit: "on"
+    synchronous_standby_names: "*"
   connect_address: '${PATRONI_KUBERNETES_POD_IP}:5432'
   authentication:
     superuser:
