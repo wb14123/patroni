@@ -11,8 +11,8 @@ cat > /home/postgres/patroni.yml <<__EOF__
 
 bootstrap:
   dcs:
-    synchronous_mode: true
-    synchronous_mode_strict: true
+    synchronous_mode: "on"
+    synchronous_mode_strict: "on"
     postgresql:
       use_pg_rewind: true
       pg_hba:
