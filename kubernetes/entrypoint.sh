@@ -31,6 +31,7 @@ postgresql:
   parameters:
     synchronous_commit: "on"
     synchronous_standby_names: "*"
+    max_connections: 500
   connect_address: '${PATRONI_KUBERNETES_POD_IP}:5432'
   authentication:
     superuser:
